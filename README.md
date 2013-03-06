@@ -6,4 +6,5 @@ LTSP Customization for LliureX
 
 lliurex-ltsp
 
+Merging
 
