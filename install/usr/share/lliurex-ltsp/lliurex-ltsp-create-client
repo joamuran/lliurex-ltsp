@@ -1,0 +1,58 @@
+#!/bin/bash
+
+NBD_SERVER=10.0.2.254
+
+if [ $# -ne 1 ]; then
+    echo "lliurex-ltsp-create-client needs a parameter"
+else
+    if [ $1 != "desktop" ] && [ $1 != "client" ] && [ $1 != "infantil" ] && [ $1 != "musica" ] && [ $1 != "pime" ]; then
+       echo "Usage: lliurex-ltsp-create-client [desktop | client | infantil | musica | pime]"
+       exit -1
+    fi
+fi
+
+CHROOT_NAME=$1
+
+   case "$CHROOT_NAME" in
+    "desktop")
+        metapackage="lliurex-cdd-gdesktop"
+        chroot="llx-desktop"
+        ;;
+    "client")
+        metapackage="lliurex-cdd-edu-class-gclient"
+        chroot="llx-client"
+        ;;
+    "infantil")
+        metapackage=""
+        chroot="llx-infantil"
+        echo "Not available yet"
+        exit -1
+        ;;
+    "musica")
+        metapackage=""
+        chroot="llx-musica"
+        echo "Not available yet"
+        exit -1
+        ;;
+    "pime")
+        metapackage=""
+        chroot="llx-pime"
+        echo "Not available yet"
+        exit -1
+        ;;
+    esac
+    echo $menulabel;
+
+
+echo "LliureX LTSP creating image... it will take a lot of time... drink a coffee patiently."
+
+ltsp-build-client --mirror http://localhost/llx1306 --security-mirror none --updates-mirror none --accept-unsigned-packages --copy-sourceslist --chroot=$chroot --dist pandora --late-packages $metapackage lliurex-ltsp-client epoptes-client --debconf-seeds /usr/share/live/build/preseed/$metapackage
+#ltsp-build-client --mirror http://mirror/llx1306 --security-mirror none --updates-mirror none --accept-unsigned-packages --copy-sourceslist --chroot=$chroot --dist pandora --late-packages $metapackage --debconf-seeds /usr/share/live/build/preseed/$metapackage
+
+#ltsp-build-client --mirror http://localhost/ --security-mirror none --updates-mirror none --accept-unsigned-packages --copy-sourceslist --chroot=llx-desktop --install-debs-dir /home/lliurex/debs --dist pandora --late-packages lliurex-cdd-gdesktop --debconf-seeds /usr/share/live/build/preseed/lliurex-cdd-gdesktop
+
+# Maybe we'll have to update kernels... if so...
+#ltsp-update-kernels $1
+
+echo "LliureX LTSP updating PXELINUX... "
+/usr/share/lliurex-ltsp/llx-create-pxelinux.sh	
