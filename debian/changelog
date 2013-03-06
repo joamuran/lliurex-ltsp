@@ -1,0 +1,35 @@
+lliurex-ltsp (0.6) precise; urgency=low
+
+  * Integration with dnsmasq
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Tue, 26 Feb 2013 13:58:53 +0100
+
+lliurex-ltsp (0.5) precise; urgency=low
+
+  * Added epoptes as dependency to install server keys into server in plugins/ltsp-build-client/common/040-epoptes-certificate
+
+ -- Jose A. Múrcia <joamuran@pandora>  Fri, 22 Feb 2013 10:17:31 +0100
+
+lliurex-ltsp (0.4) precise; urgency=low
+
+  * Fixed diversions well - I hope...
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Wed, 13 Feb 2013 12:50:03 +0100
+
+lliurex-ltsp (0.3) precise; urgency=low
+
+  * Fixed diversions
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Fri, 08 Feb 2013 10:19:28 +0100
+
+lliurex-ltsp (0.2) precise; urgency=low
+
+  * Fixed scripts X01-localapps and X99-zlocalapps-cleanup to mount homes
+
+ -- Jose Alfredo Murcia Andres <joamuran@gmail.com>  Tue, 04 Dec 2012 12:00:08 +0100
+
+lliurex-ltsp (0.1) UNRELEASED; urgency=low
+
+  * Initial release.
+
+ -- joamuran <joamuran@gmail.com>  Fri, 09 Nov 2012 11:48:22 +0100
