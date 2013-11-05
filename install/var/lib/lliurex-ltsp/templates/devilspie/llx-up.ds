@@ -1,0 +1,4 @@
+(is (application_name) "lliurex-up")
+    (begin
+       (fullscreen)
+    )

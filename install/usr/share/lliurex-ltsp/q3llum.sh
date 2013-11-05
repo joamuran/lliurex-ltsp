@@ -12,13 +12,13 @@ mk_net_structure(){
 	username=$1
 	group=$2
 
- 	mkdir -p /net/home/${group}/${username}/UserFiles
+ 	mkdir -p /net/server-sync/home/${group}/${username}/UserFiles
 
        	for folder in Documents Groups Music Videos Pictures Share; do
-       		mkdir -p /net/home/${group}/${username}/UserFiles/${folder}
+       		mkdir -p /net/server-sync/home/${group}/${username}/UserFiles/${folder}
        	done
 
-       chown -R ${username}:${group} /net/home/${group}/${username}
+       chown -R ${username}:${group} /net/server-sync/home/${group}/${username}
 
 
 

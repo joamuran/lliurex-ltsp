@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# This script is licensed under GPL v3 or higher.
+
+# Some usefull values
+eval $(n4d-vars getvalues SRV_IP)
+NBD_SERVER=$SRV_IP
+EXTRA_LLIUREX_OPTS=" --accept-unsigned-packages --mirroronnet --purge-chroot"
+
+
+
+if [ $# -ne 1 ]; then
+    echo "lliurex-ltsp-create-client needs a parameter"
+else
+    if [ $1 != "desktop" ] && [ $1 != "client" ] && [ $1 != "infantil" ] && [ $1 != "musica" ] && [ $1 != "pime" ] && [ $1 != "lite" ]; then
+       echo "Usage: lliurex-ltsp-create-client [desktop | client | infantil | musica | pime | lite ]"
+       exit -1
+    fi
+fi
+
+arch="--arch i386"
+if [ "$2" == "amd64" ]; then
+	arch="--arch amd64"
+fi
+
+CHROOT_NAME=$1
+
+   case "$CHROOT_NAME" in
+    "desktop")
+        metapackage="lliurex-cdd-gdesktop"
+        chroot="llx-desktop"
+        ;;
+    "client")
+	ALL_IS_OK=0
+	ltsp-build-client --config "/etc/ltsp/lliurex-ltsp-client.conf" ${EXTRA_LLIUREX_OPTS} || ALL_IS_OK=1
+        ;;
+    "infantil")
+        metapackage="lliurex-cdd-edu-infantil-gdesktop"
+        chroot="llx-infantil"
+        ;;
+    "musica")
+        metapackage="lliurex-cdd-edu-music-gdesktop"
+        chroot="llx-musica"
+        ;;
+    "pime")
+        metapackage="lliurex-cdd-gdesktop-gva"
+        chroot="llx-pime"
+        ;;
+    "lite")
+        metapackage="lliurex-cdd-xdesktop"
+        chroot="llx-lite"
+        ;;
+    esac
+echo $menulabel;
+
+
+
+#echo "LliureX LTSP creating image... it will take a lot of time... take a coffee patiently."
+
+#echo "ltsp-build-client command is:"
+#echo 'ltsp-build-client --mirror file:///net/mirror/llx1306 --security-mirror none --updates-mirror none --accept-unsigned-packages --mirroronnet --chroot='$chroot' --dist pandora --late-packages "'$metapackage' lliurex-ltsp-client epoptes-client devilspie" --debconf-seeds /usr/share/live/build/preseed/'$metapackage' '$arch' --purge-chroot'
+
+#ltsp-build-client --mirror file:///net/mirror/llx1306 --security-mirror none --updates-mirror none --accept-unsigned-packages --mirroronnet --chroot=$chroot --dist pandora --late-packages "$metapackage ${CUSTOM_PACKAGES}" --debconf-seeds /usr/share/live/build/preseed/$metapackage $arch --purge-chroot || umount -l /opt/ltsp/$chroot/net/mirror/llx1306 
+
+if [ ${ALL_IS_OK} -eq 0 ]; then 
+	echo "LliureX LTSP updating PXELINUX... "
+	/usr/share/lliurex-ltsp/llx-create-pxelinux.sh
+fi
+
+exit 0

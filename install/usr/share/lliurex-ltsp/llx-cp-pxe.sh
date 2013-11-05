@@ -66,10 +66,31 @@ while read line
     #fi
     
     if [ "$header" = 'append' ] && [ $adding_ltsp -eq 1 ]; then
-        line="$line nbdroot=$server:$chroot"
+        line="$line nbdroot=$server:$chroot video=LVDS-1:d"
     fi
         
-    if [ $adding_ltsp -eq 1 ]; then
+    if [ "$line" = 'ipappend 2' ]; then
+        line=""
+    fi
+
+
+    if [ $adding_ltsp -eq 1 ] && [ "$header" != 'ipappend' ]; then
+	ISINITRDLINE=`echo $line | grep initrd | wc -l`
+	ISKERNELLINE=`echo $line | grep vmlinuz | wc -l`
+
+	# parsin initrd.imgxxxx
+	if [ $ISINITRDLINE -eq 1 ]; then
+		SUSTITUYE="$(echo $line|cut -d "=" -f2| cut -d " " -f1)"
+		line=$(echo $line | sed "s%$SUSTITUYE%initrd.img%g")
+	fi
+
+	# parsin vmlinux...
+	if [ $ISKERNELLINE -eq 1 ]; then
+		SUSTITUYE="$(echo $line|cut -d " " -f2)"
+		line=$(echo $line | sed "s%$SUSTITUYE%vmlinuz%g")
+	fi
+
+
         echo $line >> /tmp/llx-cp-pxe.tmp
     fi
     if [ -z "$line" ]; then

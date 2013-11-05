@@ -1,0 +1,4 @@
+(is (application_name) "scite")
+    (begin
+       (fullscreen)
+    )

@@ -1,0 +1,4 @@
+(is (application_name) "lliurex-mirror-gui")
+    (begin
+       (fullscreen)
+    )

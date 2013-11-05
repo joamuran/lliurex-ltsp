@@ -1,0 +1,27 @@
+case "$MODE" in
+    commandline)
+        add_option "mirroronnet" "`eval_gettext "change sources.list and force umount mirror before the squashfs build"`" "advanced" "false"
+        ;;
+    configure)
+        LLIUREX_BUILD="True"
+        ;;
+    finalization)
+
+        if [ -n "LLIUREX_BUILD" ]; then
+
+            case "$CHROOT" in
+                'llx-client' | 'llx-lite' | 'llx-musica' | 'llx-pime' | ' llx-infantil' | 'llx-desktop')
+                        cp /usr/share/lliurex-apt/skels/client.list $ROOT/etc/apt/sources.list
+                        ;;
+                 *)
+                        cp /etc/apt/sources.list $ROOT/etc/apt/sources.list
+                        cp /etc/apt/sources.list.d/*.list $ROOT/etc/apt/sources.list.d/ || true
+                        ;;
+                esac
+
+  	    umount /opt/ltsp/$CHROOT/net/mirror/llx1306	    
+	    touch /tmp/umount.txt
+
+        fi
+        ;;
+esac

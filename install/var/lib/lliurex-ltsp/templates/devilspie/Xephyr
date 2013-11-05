@@ -1,0 +1,7 @@
+(if
+	(matches (application_name) "Xephyr")
+	(begin
+		(undecorate)
+		(geometry "+0+10")
+	)
+)
