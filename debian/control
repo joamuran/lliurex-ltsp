@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 7)
 Standards-Version: 3.9.3
 
 Package: lliurex-ltsp
-Depends: ${misc:Depends}, ${shlibs:Depends}, dnsmasq, ltsp-server-standalone, ltsp-server, lliurex-ltsp-client, ldm-lliurex-theme, epoptes
+Depends: ${misc:Depends}, ${shlibs:Depends}, dnsmasq, ltsp-server-standalone, ltsp-server, lliurex-ltsp-client, ldm-lliurex-theme, epoptes, devilspie, llum, lliurex-mirror-n4d-server, lliurex-maker, openbox
 Architecture: all
 Description: LliureX Light Terminal Server.
  This package gives support to Light Clients

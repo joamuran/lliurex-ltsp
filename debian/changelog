@@ -1,3 +1,168 @@
+lliurex-ltsp (0.26) precise; urgency=high
+
+  * Deleted flashplugin transfer from server, it will be packaged.
+
+ -- Jose A. Murcia <joamuran@gmail.com>  Thu, 31 Oct 2013 11:36:07 +0100
+
+lliurex-ltsp (0.25) precise; urgency=high
+
+  * Added flashplugin transfer capabilities from server
+
+ -- Jose A. Murcia <joamuran@gmail.com>  Thu, 31 Oct 2013 09:50:13 +0100
+
+lliurex-ltsp (0.24) precise; urgency=high
+
+  * Added new devilspie rules and openbox as a window manager into Xephyr Sessions.
+  * Added umount for if the flies
+  * Removed earlymirror
+
+ -- Jose A. Murcia <joamuran@lite>  Thu, 31 Oct 2013 08:54:34 +0100
+
+lliurex-ltsp (0.23) precise; urgency=low
+
+  * Fixed bug in pxe menu creation (for laptops)
+
+ -- Jose A. Murcia <joamuran@gmail.com>  Fri, 25 Oct 2013 12:18:25 +0200
+
+lliurex-ltsp (0.22) precise; urgency=low
+
+  * Getting mirror packages from file instead of http.
+
+ -- Jose A. Murcia <joamuran@gmail.com>  Wed, 25 Sep 2013 12:18:04 +0200
+
+lliurex-ltsp (0.21) precise; urgency=high
+
+  * Postinstall fixed 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 18 Sep 2013 08:40:14 +0200
+
+lliurex-ltsp (0.20) precise; urgency=high
+
+  * Postinstall execution of regeneration menu for PXE
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 17 Sep 2013 19:55:00 +0200
+
+lliurex-ltsp (0.19) precise; urgency=low
+
+  * Updated the logic:
+    - Simple explanation: The label in a PXE entry is only
+    a way to identify the entry at PXE menu. Is better that this
+    entry only contains words like llx-client (for example) instead
+    a "LliureX installation for the common people (LliureX 13.06)" label.
+    
+      
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 17 Sep 2013 19:43:57 +0200
+
+lliurex-ltsp (0.18) precise; urgency=high
+
+  * Updated default boot to llx-client
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Mon, 16 Sep 2013 11:35:08 +0200
+
+lliurex-ltsp (0.17) precise; urgency=high
+
+  * Solved LVDS bug that makes belive the thin client that had two vgas. 
+
+ -- joamuran <joamuran@gmail.com>  Thu, 12 Sep 2013 14:04:51 +0200
+
+lliurex-ltsp (0.16) precise; urgency=low
+
+  * Changed default boot option
+
+ -- David Montalva Furio <montalva_dav@gva.es>  Thu, 01 Aug 2013 09:50:47 +0200
+
+lliurex-ltsp (0.15) precise; urgency=high
+
+  * Updated with prerm abort-upgrade
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 18 Jul 2013 13:40:20 +0200
+
+lliurex-ltsp (0.14) precise; urgency=low
+
+  * Updated with prerm abort-upgrade
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 18 Jul 2013 13:39:05 +0200
+
+lliurex-ltsp (0.13) precise; urgency=high
+
+  * Fixed bug in i386 directory creation.
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Wed, 17 Jul 2013 09:03:56 +0200
+
+lliurex-ltsp (0.11) precise; urgency=high
+
+  * Updated changelog.
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Tue, 16 Jul 2013 14:02:18 +0200
+
+lliurex-ltsp (0.10) precise; urgency=low
+
+  * Updated PXE menu for boot from local disk
+
+ -- root <root@gmail.com>  Tue, 16 Jul 2013 09:47:52 +0200
+
+lliurex-ltsp (0.9) precise; urgency=high
+
+  * Ignoring kernel versions in update kernels
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Fri, 12 Jul 2013 14:35:15 +0200
+
+lliurex-ltsp (0.8) precise; urgency=low
+
+  * Added new images and enhaced PXE menu generation.
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Thu, 11 Jul 2013 14:11:27 +0200
+
+lliurex-ltsp (0.7) precise; urgency=high
+
+  * Critical bug Fixed! link LliureX to Ubuntu.
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Fri, 05 Jul 2013 13:20:39 +0200
+
+lliurex-ltsp (0.6.7) precise; urgency=low
+
+  * Updated template lts.conf
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Wed, 26 Jun 2013 13:58:13 +0200
+
+lliurex-ltsp (0.6.6) precise; urgency=low
+
+  * Modified lliurex-ltsp-create-client to force server mirror.
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Tue, 18 Jun 2013 13:09:11 +0200
+
+lliurex-ltsp (0.6.5) precise; urgency=low
+
+  * Modified lliurex-ltsp-create-client to force i386 arch and --purge-chroot
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Tue, 30 Apr 2013 13:58:32 +0200
+
+lliurex-ltsp (0.6.4) precise; urgency=low
+
+  * Fixed /usr/sbin/lliurex-ltsp-create-client to include multiple packages into client with the initial install
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Wed, 17 Apr 2013 10:00:57 +0200
+
+lliurex-ltsp (0.6.3) precise; urgency=low
+
+  * Updated to the new class model infrastructure: /etc/home -> /etc/server-sync/home
+
+ -- Jose A. Múrcia <joamuran@pandora>  Mon, 15 Apr 2013 12:02:37 +0200
+
+lliurex-ltsp (0.6.2) precise; urgency=low
+
+  * Modified postinstall to keep /var/lib/tftpboot/ltsp/lts.conf if it exists
+
+ -- Jose A. Múrcia <joamuran@gmail.com>  Mon, 15 Apr 2013 09:56:45 +0200
+
+lliurex-ltsp (0.6.1) precise; urgency=low
+
+  * Fixed path for lliurex-ltsp-create-client binary.
+    Now is needed by the n4d-plugin of ltsp suite.
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 12 Apr 2013 11:44:59 +0200
+
 lliurex-ltsp (0.6) precise; urgency=low
 
   * Integration with dnsmasq

@@ -1,6 +1,10 @@
 #!/bin/sh
 
-#set -e
+set -e
+
+if [ -h "/usr/share/ltsp/plugins/ltsp-build-client/LliureX" ]; then 
+    rm -r /usr/share/ltsp/plugins/ltsp-build-client/LliureX 
+fi
 
 #if [ -e "/etc/dnsmasq.d/ltsp-server-dnsmasq.conf" ]
 #            then

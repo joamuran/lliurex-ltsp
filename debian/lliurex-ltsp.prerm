@@ -16,8 +16,13 @@ case "$1" in
     	    dpkg-divert --package $PACKAGE_NAME --rename --quiet --remove  $ORIGINAL_FILE
 	fi
 	;;
+	failed-upgrade)
+		mkdir -p /var/lib/tftpboot/ltsp/i386 || true
+		echo "nothing to do" 
+	;;
 esac
 
+echo "nothing to do" 
 
 # dh_installdeb will replace this with shell code automatically
 

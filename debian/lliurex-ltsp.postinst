@@ -28,18 +28,39 @@ case "$1" in
 	ORIGINAL_FILE="/usr/sbin/ltsp-update-kernels"
 	NEW_FILE="/usr/sbin/ltsp-update-kernels.diverted"
 	LLIUREX_FILE="/usr/sbin/ltsp-update-kernels.lliurex"
-        if [ ! -r "$NEW_FILE" ] ; then
-            dpkg-divert --package $PACKAGE_NAME --rename --quiet --add --divert  $NEW_FILE  $ORIGINAL_FILE
-            cp -a "$LLIUREX_FILE"  "$ORIGINAL_FILE"
-         fi
+	if [ ! -r "$NEW_FILE" ] ; then
+		dpkg-divert --package $PACKAGE_NAME --rename --quiet --add --divert  $NEW_FILE  $ORIGINAL_FILE
+		cp -a "$LLIUREX_FILE"  "$ORIGINAL_FILE"
+	fi
+	
+	# If the pxe-linux is executable, run it! To solve the braindamage of upgrades
+	if [ -x /usr/share/lliurex-ltsp/llx-create-pxelinux.sh ] ; then 
+		/usr/share/lliurex-ltsp/llx-create-pxelinux.sh || true
+	fi
+	
         ;;
 esac
 
+
+# Copy pxelinux.cfg/default
+test -f /var/lib/tftpboot/ltsp/pxelinux.cfg/default || cp /var/lib/lliurex-ltsp/templates/pxelinux.cfg/default /var/lib/tftpboot/ltsp/pxelinux.cfg/
+
 # Copy lts.conf template to $tftproot/ltsp
-cp /var/lib/lliurex-ltsp/templates/lts.conf /var/lib/tftpboot/ltsp/
+test -f /var/lib/tftpboot/ltsp/i386/lts.conf || cp /var/lib/lliurex-ltsp/templates/lts.conf /var/lib/tftpboot/ltsp/i386/
 
+# testing if there are default options in lts.conf
 
+rc=0
+grep -q "LDM_SESSION" "/var/lib/tftpboot/ltsp/i386/lts.conf" || rc=1
+if [ $rc -eq 1 ] ; then
+	echo LDM_SESSION=\"gnome-session-fallback\" >> /var/lib/tftpboot/ltsp/i386/lts.conf
+fi
 
+rc=0
+grep -q "LTSP_FATCLIENT" "/var/lib/tftpboot/ltsp/i386/lts.conf" || rc=1
+if [ $rc -eq 1 ] ; then
+	echo LTSP_FATCLIENT=false >> /var/lib/tftpboot/ltsp/i386/lts.conf
+fi
 
 
 # dh_installdeb will replace this with shell code automatically
